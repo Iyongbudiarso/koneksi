@@ -50,10 +50,13 @@ public class Koneksi {
             return conn;
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Harap cek koneksi", "PERHATIAN", JOptionPane.ERROR_MESSAGE);
-            if(x == 0)
+            if(JOptionPane.showConfirmDialog(null, "Koneksi Terhadap Database Gagal\nCoba lagi?", "KONEKSI GAGAL", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-                System.exit(1);
+                return getConnection();
+            }
+            else
+            {
+                System.exit(0);
             }
             return null;
         }
